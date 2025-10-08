@@ -22,7 +22,7 @@ const manajemenInventaris = {
     if (!barang) {
       throw new Error(`Barang dengan ID ${id} tidak ditemukan`);
     }
-    barang.stok = stokBaru; // ✅ pakai stokBaru, bukan barangBaru
+    barang.stok = stokBaru; 
     console.log(`Stok ${barang.nama} diperbarui menjadi ${stokBaru}`);
   },
 
