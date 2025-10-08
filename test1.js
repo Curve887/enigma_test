@@ -6,7 +6,7 @@ const inventarisGudangAwal = [
 ];
 
 const manajemenInventaris = {
-    data: [inventarisGudangAwal],
+    data: [...inventarisGudangAwal],
 
     tambahBarang(barangBaru) {
         const duplikat = this.data.find(item => item.id === barangBaru.id);
@@ -41,10 +41,10 @@ const manajemenInventaris = {
 
 try {
     // console.log("Total Nilai AWal :", manajemenInventaris.totalNilaiInventaris());
-    manajemenInventaris.tambahBarang({id: "B007", nama: "ADE", stok: 50, harga: 4000});
+    // manajemenInventaris.tambahBarang({id: "B007", nama: "ADE", stok: 50, harga: 4000});
     // manajemenInventaris.updateStok("B002", 180);
     // console.log("Cari Barang :", manajemenInventaris.cariBarang("B003"));
-    // console.log("Total Nilai Sekarang :", manajemenInventaris.totalNilaiInventaris());
+    console.log("Total Nilai Sekarang :", manajemenInventaris.totalNilaiInventaris());
 } catch (error) {
     console.error(error.message)
 }
