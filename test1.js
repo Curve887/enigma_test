@@ -6,45 +6,45 @@ const inventarisGudangAwal = [
 ];
 
 const manajemenInventaris = {
-    data: [...inventarisGudangAwal],
+  data: [...inventarisGudangAwal],
 
-    tambahBarang(barangBaru) {
-        const duplikat = this.data.find(item => item.id === barangBaru.id);
-        if (duplikat) {
-            throw new Error(`ID ${barangBaru.id} sudah ada di data`);
-        }
-        this.data.push(barangBaru);
-        console.log(`Barang ${barangBaru.nama} sudah di tambahkan`);
-    },
-
-    updateStok(id, StokBaru) {
-        const barang = this.data.find(item => item.id === id);
-        if (!barang) {
-            throw new Error(`Barang dengan ID ${id} tidak di temukan`);
-        }
-        barang.stok = barangBaru;
-        console.log(`Stok ${barang.nama} diperbaarui menjadi ${StokBaru}`);
-    },
-
-    cariBarang(id) {
-        const barang = this.data.find(item => item.id === id);
-        if(!barang) {
-            throw new Error(`Barang dengan Id ${id} tidak ada`);
-        }
-        return barang;
-    },
-
-    totalNilaiInventaris() {
-        return this.data.reduce((total, item) => total + (item.stok * item.harga), 0);
+  tambahBarang(barangBaru) {
+    const duplikat = this.data.find(item => item.id === barangBaru.id);
+    if (duplikat) {
+      throw new Error(`ID ${barangBaru.id} sudah ada di data`);
     }
+    this.data.push(barangBaru);
+    console.log(`Barang ${barangBaru.nama} sudah ditambahkan`);
+  },
+
+  updateStok(id, stokBaru) {
+    const barang = this.data.find(item => item.id === id);
+    if (!barang) {
+      throw new Error(`Barang dengan ID ${id} tidak ditemukan`);
+    }
+    barang.stok = stokBaru; // ✅ pakai stokBaru, bukan barangBaru
+    console.log(`Stok ${barang.nama} diperbarui menjadi ${stokBaru}`);
+  },
+
+  cariBarang(id) {
+    const barang = this.data.find(item => item.id === id);
+    if (!barang) {
+      throw new Error(`Barang dengan ID ${id} tidak ada`);
+    }
+    return barang;
+  },
+
+  totalNilaiInventaris() {
+    return this.data.reduce((total, item) => total + (item.stok * item.harga), 0);
+  }
 };
 
 try {
-    // console.log("Total Nilai AWal :", manajemenInventaris.totalNilaiInventaris());
-    // manajemenInventaris.tambahBarang({id: "B007", nama: "ADE", stok: 50, harga: 4000});
-    // manajemenInventaris.updateStok("B002", 180);
-    // console.log("Cari Barang :", manajemenInventaris.cariBarang("B003"));
-    console.log("Total Nilai Sekarang :", manajemenInventaris.totalNilaiInventaris());
+  console.log("Total Nilai Awal :", manajemenInventaris.totalNilaiInventaris());
+  manajemenInventaris.tambahBarang({ id: "B001", nama: "ADE", stok: 50, harga: 4000 });
+  manajemenInventaris.updateStok("B001", 180);
+  console.log("Cari Barang :", manajemenInventaris.cariBarang("B003"));
+  console.log("Total Nilai Sekarang :", manajemenInventaris.totalNilaiInventaris());
 } catch (error) {
-    console.error(error.message)
+  console.error(error.message);
 }
